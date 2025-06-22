@@ -1,11 +1,11 @@
-resource "azurerm_storage_account" "storage_account" {
-  name                     = var.storage_account_name
-  resource_group_name      = var.resource_group.name
-  location                 = var.location
-  account_tier             = var.account_tier
-  account_replication_type = var.account_replication_type
+dynamic "azurerm_storage_account" {
+    for_each = var.azurerm_storage_account != null ? [1] : []
+    content {
+  name                     = var.azurerm_storage_account.name
+  resource_group_name      = var.azurerm_storage_account.resource_group.name
+  location                 = var.azurerm_storage_account.location
+  account_tier             = var.azurerm_storage_account.account_tier
+  account_replication_type = var.azurerm_storage_account.account_replication_type
 
-  tags = {
-    environment = var.environment
-  }
+    }
 }

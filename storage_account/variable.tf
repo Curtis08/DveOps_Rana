@@ -1,35 +1,12 @@
-variable "storage_account_name" {
-    type = string
-    default = null
 
+variable "security_rule" {
+ type = list(object({
+  name                     = string
+  resource_group_name      = string
+  location                 = string
+  account_tier             = string
+  account_replication_type = string
+  }))
 }
+  
 
-variable "resource_group.name" {
-    type = string
-    default = null
-
-}
-
-variable "location" {
-    type = string
-    default = null
-
-}
-
-variable "account_tier" {
-    type = string
-    default = null
-
-}
-
-variable "account_replication_type" {
-    type = string
-    default = null
-
-}
-
-variable "tags" {
-    type = string
-    default = "staging"
-
-}
